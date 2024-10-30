@@ -4,22 +4,22 @@ import { removeItem, updateQuantity } from './CartSlice';
 import './CartItem.css';
 
 const CartItem = ({ onContinueShopping }) => {
-  const cart = useSelector(state => state.cart.items);
-  const dispatch = useDispatch();
+    const cart = useSelector(state => state.cart.items);
+    const dispatch = useDispatch();
 
-  // Calculate total amount for all products in the cart
-  const calculateTotalAmount = () => {
-    let totalCost = 0;
-    cart.forEach((item) => {
-        let cost = item.cost.replace("$", "");
-        totalCost += item.quantity * cost;
-    });
-    return totalCost;
-  };
-
-  const handleContinueShopping = (e) => {
-   
-  };
+    // Calculate total amount for all products in the cart
+    const calculateTotalAmount = () => {
+        let totalCost = 0;
+        cart.forEach((item) => {
+            let cost = item.cost.replace("$", "");
+            totalCost += item.quantity * cost;
+        });
+        return totalCost;
+    };
+    
+    const handleContinueShopping = (e) => {
+        onContinueShopping(e);
+    };
 
     const handleCheckoutShopping = (e) => {
         alert('Functionality to be added for future reference');
@@ -37,17 +37,17 @@ const CartItem = ({ onContinueShopping }) => {
     }
     };
 
-  const handleRemove = (item) => {
-     dispatch(removeItem(item.name));
-  };
+    const handleRemove = (item) => {
+        dispatch(removeItem(item.name));
+    };
 
-  // Calculate total cost based on quantity for an item
-  const calculateTotalCost = (item) => {
-    let cost = item.cost.replace("$", "");
-    return item.quantity * cost;
-  };
+    // Calculate total cost based on quantity for an item
+    const calculateTotalCost = (item) => {
+        let cost = item.cost.replace("$", "");
+        return item.quantity * cost;
+    };
 
-  return (
+    return (
     <div className="cart-container">
       <h2 style={{ color: 'black' }}>Total Cart Amount: ${calculateTotalAmount()}</h2>
       <div>
@@ -75,7 +75,7 @@ const CartItem = ({ onContinueShopping }) => {
         <button className="get-started-button1" onClick={(e) => handleCheckoutShopping(e)}>Checkout</button>
       </div>
     </div>
-  );
+    );
 };
 
 export default CartItem;
